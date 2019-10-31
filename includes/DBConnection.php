@@ -24,11 +24,10 @@ $sqlShort = "CREATE TABLE `short` (
 )";
 
 $sqlUsers = "CREATE TABLE `users` (
-  `login` text(24) UNIQUE NOT NULL,
+  `login` varchar(24) UNIQUE NOT NULL,
   `password` text(24) NOT NULL,
   `admin` tinyint(1) NOT NULL
 )";
-
 
 if(!$checkShort) {
     if (!($connection->query($sqlShort) === TRUE)) {
@@ -41,3 +40,5 @@ if(!$checkUsers) {
         die("Error creating table: " . $connection->error);
     }
 }
+
+$connection->query("INSERT INTO `users` VALUES ('admin', 'admin', 1)");
